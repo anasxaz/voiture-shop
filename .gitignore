@@ -1,0 +1,23 @@
+# Spring Boot
+SpringDataRest/target/
+SpringDataRest/src/main/resources/application-local.properties
+SpringDataRest/.mvn/
+SpringDataRest/mvnw
+SpringDataRest/mvnw.cmd
+
+# React
+myapp/node_modules/
+myapp/build/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
