@@ -22,7 +22,7 @@ Application de gestion et vente de voitures avec conseiller IA intégré.
 ### 1. Cloner le projet
 
 ```bash
-git clone <url-du-repo>
+git clone https://github.com/anasxaz/voiture-shop.git
 cd Voiture-Shop
 ```
 
