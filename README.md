@@ -31,7 +31,9 @@ GOOGLE_CLIENT_ID=votre-client-id
 GOOGLE_CLIENT_SECRET=votre-client-secret
 ```
 
-Sans ce fichier, la connexion par email/mot de passe reste fonctionnelle.
+Sans ce fichier, la connexion par email/mot de passe reste entièrement fonctionnelle.
+
+> **Note Google OAuth :** L'application Google OAuth est en mode "Test". Seuls les comptes ajoutés manuellement comme testeurs peuvent l'utiliser. Pour tester cette fonctionnalité, contactez le développeur afin qu'il ajoute votre adresse email via Google Cloud Console → OAuth consent screen → Test users.
 
 ### 3. Démarrer tous les services
 
@@ -115,4 +117,10 @@ Pour supprimer aussi les données PostgreSQL et le modèle IA :
 
 ```bash
 docker compose down -v
+```
+
+Pour tout supprimer (données + images Docker) et repartir de zéro :
+
+```bash
+docker compose down -v --rmi all
 ```
