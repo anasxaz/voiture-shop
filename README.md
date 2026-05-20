@@ -23,7 +23,7 @@ Application de gestion et vente de voitures avec conseiller IA intégré.
 
 ```bash
 git clone https://github.com/anasxaz/voiture-shop.git
-cd Voiture-Shop
+cd voiture-shop
 ```
 
 ### 2. (Optionnel) Configurer Google OAuth2
