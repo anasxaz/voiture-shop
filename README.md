@@ -47,11 +47,10 @@ docker compose up --build
 
 ### 4. Accéder à l'application
 
-| Service   | URL                        |
-|-----------|----------------------------|
-| Frontend  | http://localhost:3000       |
-| Backend   | http://localhost:8089       |
-| Base de données | localhost:5432 (voituredb) |
+Ouvrir dans le navigateur : **http://localhost:3000**
+
+> - `localhost:8089` est l'API REST (utilisée en arrière-plan par le frontend, pas à ouvrir directement)
+> - `localhost:5432` est la base de données PostgreSQL (accessible uniquement via un client SQL comme DBeaver)
 
 ---
 
