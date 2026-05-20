@@ -17,6 +17,14 @@ services:
       timeout: 5s
       retries: 5
 
+  ollama:
+    image: ollama/ollama
+    container_name: voiture_shop_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
   backend:
     build: ./SpringDataRest
     container_name: voiture_shop_backend
@@ -29,10 +37,12 @@ services:
       POSTGRES_PASSWORD: admin123
       GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-your-google-client-id}
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-your-google-client-secret}
-      SPRING_AI_OLLAMA_BASE_URL: http://host.docker.internal:11434
+      SPRING_AI_OLLAMA_BASE_URL: http://ollama:11434
     depends_on:
       postgres:
         condition: service_healthy
+      ollama:
+        condition: service_started
 
   frontend:
     build: ./myapp
@@ -44,3 +54,4 @@ services:
 
 volumes:
   postgres_data:
+  ollama_data:

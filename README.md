@@ -2,18 +2,14 @@
 
 Application de gestion et vente de voitures avec conseiller IA intégré.
 
-**Stack :** Spring Boot 4 · React · PostgreSQL · Spring AI (Ollama) · JWT · OAuth2 Google
+**Stack :** Spring Boot 4 · React · PostgreSQL · Spring AI (Ollama / llama2) · JWT · OAuth2 Google
 
 ---
 
 ## Prérequis
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) installé et lancé
-- [Ollama](https://ollama.com/) installé avec le modèle `llama2` :
-  ```bash
-  ollama pull llama2
-  ollama serve
-  ```
+- Git
 
 ---
 
@@ -37,20 +33,34 @@ GOOGLE_CLIENT_SECRET=votre-client-secret
 
 Sans ce fichier, la connexion par email/mot de passe reste fonctionnelle.
 
-### 3. Démarrer les 3 services
+### 3. Démarrer tous les services
 
 ```bash
 docker compose up --build
 ```
 
-> Le premier lancement prend quelques minutes (compilation Maven + npm build).
+> Le premier lancement prend plusieurs minutes :
+> - Compilation Maven du backend
+> - Build npm du frontend
+> - Téléchargement des images Docker
 
-### 4. Accéder à l'application
+### 4. Télécharger le modèle IA (première fois uniquement)
+
+Une fois les conteneurs démarrés, exécuter cette commande dans un autre terminal :
+
+```bash
+docker exec voiture_shop_ollama ollama pull llama2
+```
+
+> Le modèle llama2 fait environ 3.8 Go. Cette étape n'est nécessaire qu'une seule fois — il est ensuite conservé dans un volume Docker.
+
+### 5. Accéder à l'application
 
 Ouvrir dans le navigateur : **http://localhost:3000**
 
-> - `localhost:8089` est l'API REST (utilisée en arrière-plan par le frontend, pas à ouvrir directement)
-> - `localhost:5432` est la base de données PostgreSQL (accessible uniquement via un client SQL comme DBeaver)
+> - `localhost:8089` → API REST (utilisée en arrière-plan, pas à ouvrir directement)
+> - `localhost:11434` → Ollama (IA, pas à ouvrir directement)
+> - `localhost:5432` → PostgreSQL (accessible via un client SQL comme DBeaver)
 
 ---
 
@@ -71,7 +81,7 @@ Tout visiteur peut créer un compte utilisateur depuis la page de connexion.
 - Parcourir le catalogue avec filtres (prix, année) et tri
 - Voir le détail d'une voiture
 - Envoyer une demande de contact "Je suis intéressé(e)"
-- **Conseiller IA** : assistant conversationnel basé sur le budget et les préférences, alimenté par le catalogue en temps réel
+- **Conseiller IA** : assistant conversationnel basé sur le budget et les préférences, alimenté par le catalogue en temps réel (nécessite le modèle llama2)
 
 ### Administrateur
 - **Tableau de bord** : statistiques (total voitures, demandes en attente, prix moyen, voiture la plus/moins chère)
@@ -83,13 +93,13 @@ Tout visiteur peut créer un compte utilisateur depuis la page de connexion.
 ## Architecture
 
 ```
-Voiture-Shop/
+voiture-shop/
 ├── SpringDataRest/   ← Backend Spring Boot (port 8089)
 │   └── Dockerfile    ← Build multi-stage Maven → JRE Alpine
 ├── myapp/            ← Frontend React (port 3000)
 │   ├── Dockerfile    ← Build Node → Nginx Alpine
 │   └── nginx.conf    ← Routing SPA
-├── docker-compose.yml
+├── docker-compose.yml  ← 4 services : PostgreSQL, Ollama, Backend, Frontend
 └── README.md
 ```
 
@@ -101,7 +111,7 @@ Voiture-Shop/
 docker compose down
 ```
 
-Pour supprimer aussi les données PostgreSQL :
+Pour supprimer aussi les données PostgreSQL et le modèle IA :
 
 ```bash
 docker compose down -v
