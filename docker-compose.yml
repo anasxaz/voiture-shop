@@ -35,8 +35,8 @@ services:
       POSTGRES_PORT: 5432
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin123
-      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-your-google-client-id}
-      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-your-google-client-secret}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-829984716736-a9sbqv7r9mcjajlbvolfq5fm2drc5pn8.apps.googleusercontent.com}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-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}
       SPRING_AI_OLLAMA_BASE_URL: http://ollama:11434
     depends_on:
       postgres:
