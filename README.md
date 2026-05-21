@@ -3,6 +3,7 @@
 Application de gestion et vente de voitures avec conseiller IA intégré.
 
 **Stack :** Spring Boot 4 · React · PostgreSQL · Spring AI (Ollama / llama2) · JWT · OAuth2 Google
+
 **Fait par :** ANAS BENAMARA
 
 ---
