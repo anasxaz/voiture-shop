@@ -18,7 +18,7 @@ function VoitureListe() {
 
   useEffect(() => {
     if (!isAuthenticated()) { navigate('/login'); return; }
-    fetch('http://localhost:8089/voitures', { headers: authHeaders() })
+    fetch('/voitures', { headers: authHeaders() })
       .then(res => {
         if (res.status === 401 || res.status === 403) { navigate('/login'); return; }
         if (!res.ok) throw new Error('Erreur lors du chargement des voitures');

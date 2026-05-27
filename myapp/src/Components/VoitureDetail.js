@@ -14,7 +14,7 @@ function VoitureDetail() {
 
   useEffect(() => {
     if (!isAuthenticated()) { navigate('/login'); return; }
-    fetch(`http://localhost:8089/voitures/${id}`, { headers: authHeaders() })
+    fetch(`/voitures/${id}`, { headers: authHeaders() })
       .then(res => {
         if (!res.ok) throw new Error('Voiture introuvable');
         return res.json();

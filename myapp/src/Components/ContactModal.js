@@ -13,7 +13,7 @@ function ContactModal({ show, onHide, voiture }) {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('http://localhost:8089/contacts', {
+      const res = await fetch('/contacts', {
         method: 'POST',
         headers: authHeaders(),
         body: JSON.stringify({

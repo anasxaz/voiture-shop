@@ -16,7 +16,7 @@ function ModifierVoiture() {
   useEffect(() => {
     if (!isAuthenticated()) { navigate('/login'); return; }
 
-    fetch(`http://localhost:8089/voitures`, { headers: authHeaders() })
+    fetch(`/voitures`, { headers: authHeaders() })
       .then(res => res.json())
       .then(data => {
         const v = data.find(v => v.id === parseInt(id));
@@ -33,7 +33,7 @@ function ModifierVoiture() {
     e.preventDefault();
     const voiture = { ...form, annee: parseInt(form.annee), prix: parseInt(form.prix) };
 
-    fetch(`http://localhost:8089/voitures/${id}`, {
+    fetch(`/voitures/${id}`, {
       method: 'PUT',
       headers: authHeaders(),
       body: JSON.stringify(voiture)

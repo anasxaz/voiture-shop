@@ -21,3 +21,6 @@ Thumbs.db
 # Env
 .env
 .env.local
+
+# Kubernetes secrets (credentials réels — ne jamais committer)
+k8s/google-secret.yaml

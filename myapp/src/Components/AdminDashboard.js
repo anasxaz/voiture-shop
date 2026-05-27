@@ -30,7 +30,7 @@ function AdminDashboard() {
 
   useEffect(() => {
     if (!isAdmin()) { navigate('/'); return; }
-    fetch('http://localhost:8089/admin/stats', { headers: authHeaders() })
+    fetch('/admin/stats', { headers: authHeaders() })
       .then(res => { if (!res.ok) throw new Error('Erreur'); return res.json(); })
       .then(data => { setStats(data); setLoading(false); })
       .catch(err => { setError(err.message); setLoading(false); });

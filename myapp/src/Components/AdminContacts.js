@@ -11,20 +11,20 @@ function AdminContacts() {
 
   useEffect(() => {
     if (!isAdmin()) { navigate('/'); return; }
-    fetch('http://localhost:8089/contacts', { headers: authHeaders() })
+    fetch('/contacts', { headers: authHeaders() })
       .then(res => { if (!res.ok) throw new Error('Erreur'); return res.json(); })
       .then(data => { setDemandes(data); setLoading(false); })
       .catch(err => { setError(err.message); setLoading(false); });
   }, [navigate]);
 
   const traiter = (id) => {
-    fetch(`http://localhost:8089/contacts/${id}/traiter`, {
+    fetch(`/contacts/${id}/traiter`, {
       method: 'PUT', headers: authHeaders()
     }).then(() => setDemandes(prev => prev.map(d => d.id === id ? { ...d, traitee: true } : d)));
   };
 
   const supprimer = (id) => {
-    fetch(`http://localhost:8089/contacts/${id}`, {
+    fetch(`/contacts/${id}`, {
       method: 'DELETE', headers: authHeaders()
     }).then(() => setDemandes(prev => prev.filter(d => d.id !== id)));
   };

@@ -19,7 +19,7 @@ function AjouterVoiture() {
 
     const voiture = { ...form, annee: parseInt(form.annee), prix: parseInt(form.prix) };
 
-    fetch('http://localhost:8089/api/voitures', {
+    fetch('/api/voitures', {
       method: 'POST',
       headers: authHeaders(),
       body: JSON.stringify(voiture)

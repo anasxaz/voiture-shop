@@ -82,7 +82,7 @@ function Login() {
               type="button"
               className="btn w-100 d-flex align-items-center justify-content-center gap-2"
               style={{ backgroundColor: '#fff', color: '#444', fontWeight: 500 }}
-              onClick={() => window.location.href = 'http://localhost:8089/oauth2/authorization/google'}
+              onClick={() => window.location.href = '/oauth2/authorization/google'}
             >
               <img
                 src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"

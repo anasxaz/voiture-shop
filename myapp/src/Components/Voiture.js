@@ -10,7 +10,7 @@ function Voiture({ voiture, onDelete }) {
 
   const handleDelete = () => {
     if (!window.confirm(`Supprimer ${voiture.marque} ${voiture.modele} ?`)) return;
-    fetch(`http://localhost:8089/voitures/${voiture.id}`, {
+    fetch(`/voitures/${voiture.id}`, {
       method: 'DELETE',
       headers: authHeaders()
     }).then(() => onDelete(voiture.id));

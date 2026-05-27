@@ -31,7 +31,7 @@ function ChatBot() {
     setError(null);
 
     try {
-      const res = await fetch('http://localhost:8089/ai/suggest', {
+      const res = await fetch('/ai/suggest', {
         method: 'POST',
         headers: authHeaders(),
         body: JSON.stringify({
